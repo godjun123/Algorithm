@@ -1,18 +1,47 @@
-#include <stdio.h>#include <stdlib.h>void deepCopy(int* ptr) {
-    int* newPtr = malloc(sizeof(int)); // 새로운 메모리 할당
-    *newPtr = *ptr; // 값 복사
-    *newPtr = 20; // 서로 다른 메모리 영역을 가리키므로 원본 값은 변경되지 않음
-}
+#include<stdio.h>
+int main()
+{
+  int a,b;
+  int i,j,k;
+  char nemo[50][51]={0,};
+  int count=0;
+  scanf("%d%d",&a,&b);
+  for(i=0;i<a;i++)
+  {
+    scanf("%s",nemo[i]);
+  }
+    for(i=0;i<a;i++)
+    {
+        if(i%2==0)
+        {
+            for(k=0;k<b;k++)
+            {
+                if(k%2==0&&nemo[i][k]=='W')
+                {
+                    count++;
+                }
+                if(k%2!=0&&nemo[i][k]=='B')
+                {
+                    count++;
+                }
+            }
+        }
+        else if(i%2!=0)
+        {
+            for(j=0;j<b;j++)
+            {
+                if(j%2==0&&nemo[i][j]=='B')
+                {
+                    count++;
+                }
+                if(j%2!=0&&nemo[i][j]=='W')
+                {
+                    count++;
+                }
+            }
+        }
+    }
 
-int main() {
-    int value = 10;
-    int* ptr = &value;
-
-    printf("Before deep copy: %d\n", *ptr); // 10
-
-    deepCopy(ptr);
-
-    printf("After deep copy: %d\n", *ptr); // 10
-
-    return 0;
+  printf("%d",(a*b)-count);
+                
 }
